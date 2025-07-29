@@ -42,11 +42,18 @@ A modern, intelligent library management system with beautiful UI/UX, built with
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Python 3.13+
-- Google API Key for Gemini AI
+### 🌐 **Try Online (Recommended)**
+**Live Demo**: [https://neurolib.streamlit.app/](https://neurolib.streamlit.app/)
 
-### Installation
+The app automatically loads with 20 sample books including classics, sci-fi, mystery, and more! 
+
+### 🏠 **Local Development**
+
+#### Prerequisites
+- Python 3.8+ (Recommended: Python 3.11+)
+- Google API Key for Gemini AI (optional, for AI features)
+
+#### Installation
 
 1. **Clone the repository**:
    ```bash
@@ -54,12 +61,14 @@ A modern, intelligent library management system with beautiful UI/UX, built with
    cd neurolib
    ```
 
-2. **Install dependencies**:
+2. **Set up environment** (see Setup section below for details)
+
+3. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Set up Gemini AI**:
+4. **Set up Gemini AI** (Optional):
    - Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
    - Set it as an environment variable:
      ```bash
@@ -70,24 +79,17 @@ A modern, intelligent library management system with beautiful UI/UX, built with
      GOOGLE_API_KEY = "your-api-key-here"
      ```
 
-4. **Run the application**:
+5. **Run the application**:
    ```bash
-   # Option 1: With Open Library Integration (Recommended)
-   python run_api_version.py
+   # Main application (works both locally and on Streamlit Cloud)
+   streamlit run app.py
    
-   # Option 2: Enhanced UI with modern design
-   python run_enhanced.py
-   
-   # Option 3: Original version
-   python run_app.py
-   
-   # Option 4: Run directly with Streamlit
-   streamlit run app_with_api.py   # Open Library version
-   streamlit run app_enhanced.py   # Enhanced UI version
-   streamlit run app.py            # Original version
+   # Or use launcher scripts for local development
+   python run_api_version.py      # With Open Library integration
+   python run_enhanced.py         # Enhanced UI version
    ```
 
-5. **Open your browser** to `http://localhost:8501`
+6. **Open your browser** to `http://localhost:8501`
 
 ### 📚 Sample Data
 The system comes pre-loaded with **30 diverse books** including detailed summaries:
@@ -107,6 +109,68 @@ The system comes pre-loaded with **30 diverse books** including detailed summari
 - 📋 5 borrowing history entries to demo analytics
 
 **Quick Setup:** If needed, run `python init_booknest.py` to refresh the sample data.
+
+## ⚙️ Setup
+
+### 🐍 **Local Python Environment**
+
+Choose your preferred method to set up a local Python environment:
+
+#### **Option 1: Using uv (modern Python environment manager)**
+```bash
+# Create a new virtual environment with uv
+uv venv
+
+# Activate it
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies from requirements.txt
+uv pip install -r requirements.txt
+
+# Install additional dependencies for enhanced features
+uv pip install requests jupyter
+```
+
+#### **Option 2: Using python -m venv (standard)**
+```bash
+# Create a virtual environment
+python -m venv .venv
+
+# Activate it
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Install dependencies from requirements.txt
+pip install -r requirements.txt
+
+# Install additional dependencies
+pip install requests jupyter
+```
+
+#### **Option 3: Using conda**
+```bash
+# Create conda environment
+conda create -n booknest python=3.11
+
+# Activate environment
+conda activate booknest
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### 🚀 **Streamlit Cloud Deployment**
+
+To deploy your own version on Streamlit Cloud:
+
+1. **Fork this repository** to your GitHub account
+2. **Connect to Streamlit Cloud**:
+   - Go to [share.streamlit.io](https://share.streamlit.io)
+   - Connect your GitHub account
+   - Deploy from your forked repository
+3. **Configure secrets** (optional, for AI features):
+   - In Streamlit Cloud dashboard, go to "Secrets"
+   - Add: `GOOGLE_API_KEY = "your-api-key-here"`
+4. **Your app will be available** at `https://your-app-name.streamlit.app/`
 
 ## 📖 Usage Guide
 

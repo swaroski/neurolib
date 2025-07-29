@@ -36,50 +36,160 @@ class LibraryData:
 class LibraryManager:
     def __init__(self):
         self.data_file = "library_data.json"
+        # Initialize with sample books if running on Streamlit Cloud
+        if 'library_books' not in st.session_state:
+            st.session_state.library_books = self.create_sample_books()
+        if 'borrowing_history' not in st.session_state:
+            st.session_state.borrowing_history = []
+        
+        # Try to load from file if it exists (for local development)
         self.load_data()
+    
+    def create_sample_books(self):
+        """Create sample books for Streamlit Cloud"""
+        return [
+            Book("0001", "To Kill a Mockingbird", "Harper Lee", "Fiction", 1960, "978-0-06-112008-4", 
+                 ["classic", "social-justice", "coming-of-age"], 
+                 summary="A powerful story of racial injustice and childhood innocence in the American South."),
+            
+            Book("0002", "1984", "George Orwell", "Fiction", 1949, "978-0-452-28423-4", 
+                 ["dystopian", "political", "classic"], 
+                 summary="A chilling vision of a totalitarian future where Big Brother watches everything."),
+            
+            Book("0003", "Pride and Prejudice", "Jane Austen", "Romance", 1813, "978-0-14-143951-8", 
+                 ["classic", "romance", "regency"], is_borrowed=True, borrower_name="Alice Johnson",
+                 due_date=(datetime.now() + timedelta(days=5)).strftime("%Y-%m-%d"),
+                 summary="The timeless story of Elizabeth Bennet and Mr. Darcy's complex courtship."),
+            
+            Book("0004", "The Great Gatsby", "F. Scott Fitzgerald", "Fiction", 1925, "978-0-7432-7356-5", 
+                 ["classic", "american-dream", "jazz-age"], 
+                 summary="A tragic tale of love, wealth, and the corruption of the American Dream."),
+            
+            Book("0005", "Harry Potter and the Sorcerer's Stone", "J.K. Rowling", "Fantasy", 1997, "978-0-439-70818-8", 
+                 ["magic", "young-adult", "adventure"], 
+                 summary="A young wizard discovers his magical heritage and begins his journey at Hogwarts."),
+            
+            Book("0006", "Dune", "Frank Herbert", "Sci-Fi", 1965, "978-0-441-17271-9", 
+                 ["space-opera", "politics", "ecology"], 
+                 summary="Epic tale of politics, religion, and ecology on the desert planet Arrakis."),
+            
+            Book("0007", "The Hitchhiker's Guide to the Galaxy", "Douglas Adams", "Sci-Fi", 1979, "978-0-345-39180-3", 
+                 ["humor", "space", "adventure"], is_borrowed=True, borrower_name="Bob Smith",
+                 due_date=(datetime.now() + timedelta(days=10)).strftime("%Y-%m-%d"),
+                 summary="A hilarious journey through space with Arthur Dent and his alien friend Ford Prefect."),
+            
+            Book("0008", "The Murder of Roger Ackroyd", "Agatha Christie", "Mystery", 1926, "978-0-06-207350-4", 
+                 ["detective", "classic", "whodunit"], 
+                 summary="Hercule Poirot investigates a shocking murder with an unexpected twist."),
+            
+            Book("0009", "Sapiens", "Yuval Noah Harari", "Non-Fiction", 2011, "978-0-06-231609-7", 
+                 ["history", "anthropology", "evolution"], 
+                 summary="A sweeping look at the history and impact of Homo sapiens on Earth."),
+            
+            Book("0010", "The Lord of the Rings", "J.R.R. Tolkien", "Fantasy", 1954, "978-0-544-00341-5", 
+                 ["epic", "adventure", "middle-earth"], 
+                 summary="The epic quest to destroy the One Ring and save Middle-earth from darkness."),
+            
+            Book("0011", "Gone Girl", "Gillian Flynn", "Mystery", 2012, "978-0-307-58836-4", 
+                 ["psychological", "thriller", "marriage"], 
+                 summary="A marriage's dark secrets are revealed when Amy Dunne mysteriously disappears."),
+            
+            Book("0012", "Educated", "Tara Westover", "Biography", 2018, "978-0-399-59050-4", 
+                 ["memoir", "education", "family"], 
+                 summary="A powerful memoir about education's transformative power."),
+            
+            Book("0013", "The Martian", "Andy Weir", "Sci-Fi", 2011, "978-0-553-41802-6", 
+                 ["mars", "survival", "science"], 
+                 summary="Mark Watney's incredible survival story on Mars."),
+            
+            Book("0014", "Atomic Habits", "James Clear", "Self-Help", 2018, "978-0-7352-1129-2", 
+                 ["productivity", "habits", "psychology"], 
+                 summary="A proven system for building good habits and breaking bad ones."),
+            
+            Book("0015", "Where the Crawdads Sing", "Delia Owens", "Fiction", 2018, "978-0-7352-1909-0", 
+                 ["nature", "mystery", "coming-of-age"], is_borrowed=True, borrower_name="Carol Davis",
+                 due_date=(datetime.now() - timedelta(days=2)).strftime("%Y-%m-%d"),  # Overdue
+                 summary="Kya the 'Marsh Girl' grows up isolated in North Carolina's coastal marshes."),
+            
+            Book("0016", "The Silent Patient", "Alex Michaelides", "Mystery", 2019, "978-1-250-30170-7", 
+                 ["psychological", "thriller", "art"], 
+                 summary="A psychotherapist becomes obsessed with treating a woman who refuses to speak."),
+            
+            Book("0017", "Circe", "Madeline Miller", "Fantasy", 2018, "978-0-316-55633-4", 
+                 ["mythology", "greek-gods", "feminism"], 
+                 summary="The enchanting story of Circe, the banished witch of Greek mythology."),
+            
+            Book("0018", "Becoming", "Michelle Obama", "Biography", 2018, "978-1-5247-6313-8", 
+                 ["memoir", "politics", "inspiration"], 
+                 summary="The former First Lady's powerful memoir of her journey to the White House."),
+            
+            Book("0019", "The Seven Husbands of Evelyn Hugo", "Taylor Jenkins Reid", "Fiction", 2017, "978-1-5011-3981-6", 
+                 ["hollywood", "lgbtq", "secrets"], 
+                 summary="Reclusive Hollywood icon Evelyn Hugo finally tells her life story."),
+            
+            Book("0020", "Klara and the Sun", "Kazuo Ishiguro", "Sci-Fi", 2021, "978-0-571-36487-1", 
+                 ["artificial-intelligence", "humanity", "love"], 
+                 summary="From the perspective of an artificial friend, exploring what it means to be human.")
+        ]
         
     def load_data(self):
         try:
             with open(self.data_file, 'r') as f:
                 data_dict = json.load(f)
                 books_data = data_dict.get('books', [])
-                self.books = [Book(**book) for book in books_data]
-                self.borrowing_history = data_dict.get('borrowing_history', [])
+                # Only load from file if session state is empty
+                if not st.session_state.library_books:
+                    st.session_state.library_books = [Book(**book) for book in books_data]
+                if not st.session_state.borrowing_history:
+                    st.session_state.borrowing_history = data_dict.get('borrowing_history', [])
         except FileNotFoundError:
-            self.books = []
-            self.borrowing_history = []
+            # This is expected on Streamlit Cloud - we already have sample books
+            pass
             
+    @property
+    def books(self):
+        return st.session_state.library_books
+    
+    @property 
+    def borrowing_history(self):
+        return st.session_state.borrowing_history
+    
     def save_data(self):
-        data = {
-            'books': [asdict(book) for book in self.books],
-            'borrowing_history': self.borrowing_history
-        }
-        with open(self.data_file, 'w') as f:
-            json.dump(data, f, indent=2)
+        # For Streamlit Cloud, data persists in session state
+        # For local development, save to file
+        try:
+            data = {
+                'books': [asdict(book) for book in self.books],
+                'borrowing_history': self.borrowing_history
+            }
+            with open(self.data_file, 'w') as f:
+                json.dump(data, f, indent=2)
+        except:
+            pass  # Skip file saving on Streamlit Cloud
     
     def add_book(self, book: Book):
-        self.books.append(book)
+        st.session_state.library_books.append(book)
         self.save_data()
     
     def update_book(self, book_id: str, updated_book: Book):
-        for i, book in enumerate(self.books):
+        for i, book in enumerate(st.session_state.library_books):
             if book.id == book_id:
-                self.books[i] = updated_book
+                st.session_state.library_books[i] = updated_book
                 break
         self.save_data()
     
     def delete_book(self, book_id: str):
-        self.books = [book for book in self.books if book.id != book_id]
+        st.session_state.library_books = [book for book in st.session_state.library_books if book.id != book_id]
         self.save_data()
     
     def check_out_book(self, book_id: str, borrower_name: str, days: int = 14):
-        for book in self.books:
+        for book in st.session_state.library_books:
             if book.id == book_id:
                 book.is_borrowed = True
                 book.borrower_name = borrower_name
                 book.due_date = (datetime.now() + timedelta(days=days)).strftime("%Y-%m-%d")
                 
-                self.borrowing_history.append({
+                st.session_state.borrowing_history.append({
                     'book_id': book_id,
                     'book_title': book.title,
                     'borrower_name': borrower_name,
@@ -91,14 +201,14 @@ class LibraryManager:
         self.save_data()
     
     def check_in_book(self, book_id: str):
-        for book in self.books:
+        for book in st.session_state.library_books:
             if book.id == book_id:
                 book.is_borrowed = False
                 borrower_name = book.borrower_name
                 book.borrower_name = ""
                 book.due_date = None
                 
-                self.borrowing_history.append({
+                st.session_state.borrowing_history.append({
                     'book_id': book_id,
                     'book_title': book.title,
                     'borrower_name': borrower_name,
@@ -210,6 +320,10 @@ def main():
     
     library_manager = st.session_state.library_manager
     ai_assistant = st.session_state.ai_assistant
+    
+    # Show initialization success
+    if len(library_manager.books) > 0:
+        st.success(f"🎉 BookNest initialized with {len(library_manager.books)} sample books!")
     
     # Sidebar navigation
     st.sidebar.title("Navigation")

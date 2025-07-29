@@ -23,6 +23,13 @@ A modern, intelligent library management system with beautiful UI/UX, built with
 - **🧠 Smart Library Insights**: AI analysis of your collection with trends and recommendations
 - **📊 Intelligent Analytics**: Data-driven insights about your library usage
 
+### 🌐 Open Library Integration
+- **🔍 Search & Import**: Search millions of books from Open Library database
+- **📚 Real Book Data**: Import books with accurate metadata, covers, and descriptions
+- **⚡ Quick Import**: One-click import buttons for popular book series
+- **🏷️ Auto-Categorization**: Automatic genre classification and tagging
+- **📖 Cover Images**: Real book covers from Open Library's collection
+
 ### 🎨 Enhanced User Experience
 - **Modern Card-Based Layout**: Netflix/Open Library inspired design with book cover thumbnails
 - **Status Badges**: Color-coded availability indicators (Available/Borrowed/Overdue)
@@ -65,15 +72,19 @@ A modern, intelligent library management system with beautiful UI/UX, built with
 
 4. **Run the application**:
    ```bash
-   # Option 1: Enhanced UI with modern design (Recommended)
+   # Option 1: With Open Library Integration (Recommended)
+   python run_api_version.py
+   
+   # Option 2: Enhanced UI with modern design
    python run_enhanced.py
    
-   # Option 2: Original version
+   # Option 3: Original version
    python run_app.py
    
-   # Option 3: Run directly with Streamlit
-   streamlit run app_enhanced.py  # Enhanced version
-   streamlit run app.py           # Original version
+   # Option 4: Run directly with Streamlit
+   streamlit run app_with_api.py   # Open Library version
+   streamlit run app_enhanced.py   # Enhanced UI version
+   streamlit run app.py            # Original version
    ```
 
 5. **Open your browser** to `http://localhost:8501`
@@ -135,6 +146,14 @@ The system comes pre-loaded with **30 diverse books** including detailed summari
 3. **Smart Recommendations**: Get personalized suggestions based on any book
 4. **Library Insights**: AI analysis in the 📊 Insights tab
 5. **Chat Interface**: Ask questions like "Which sci-fi books do you recommend?" or "What books are overdue?"
+
+### 🌐 Open Library Integration
+1. **Search & Import**: Use the "Import from Open Library" tab
+2. **Search Any Book**: Search by title, author, series, or genre
+3. **One-Click Import**: Click "Import" on any search result
+4. **Quick Import Buttons**: Popular series like Harry Potter, Lord of the Rings
+5. **Automatic Enhancement**: All imported books get AI summaries and genre classification
+6. **Real Book Covers**: Imported books include actual cover images from Open Library
 
 ### Analytics
 1. Check **📊 Analytics** for data insights

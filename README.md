@@ -204,12 +204,13 @@ To deploy your own version on Streamlit Cloud:
 3. Apply additional filters by availability status or genre
 4. Browse your entire collection with detailed information
 
-### 🤖 AI Features
-1. **Floating AI Librarian**: Click the 🤖 button for instant AI assistance
-2. **Book Summaries**: Generate summaries directly from book cards
-3. **Smart Recommendations**: Get personalized suggestions based on any book
-4. **Library Insights**: AI analysis in the 📊 Insights tab
-5. **Chat Interface**: Ask questions like "Which sci-fi books do you recommend?" or "What books are overdue?"
+### 🤖 AI Features & Recommendations
+1. **📚 Smart Recommendations**: Click "Get Recommendations" on any book to see similar books
+2. **🔍 Search-Based Recommendations**: Use "Find Similar" in search results
+3. **💡 Intelligent Matching**: Recommendations based on genre, tags, and themes
+4. **🤖 AI-Powered Suggestions**: Advanced recommendations with explanations (when API key provided)
+5. **📖 Book Summaries**: Generate AI summaries for any book
+6. **📊 Library Insights**: AI analysis of your collection trends
 
 ### 🌐 Open Library Integration
 1. **Search & Import**: Use the "Import from Open Library" tab

@@ -287,6 +287,36 @@ Explanation here."""
         except Exception as e:
             return [f"Could not generate recommendations: {str(e)}"]
     
+    def get_simple_recommendations(self, books: List[Book], current_book: Book) -> List[Book]:
+        """Get simple rule-based recommendations without AI"""
+        other_books = [book for book in books if book.id != current_book.id]
+        recommendations = []
+        
+        # 1. Same genre books
+        genre_matches = [book for book in other_books if book.genre == current_book.genre]
+        recommendations.extend(genre_matches[:2])
+        
+        # 2. Books with similar tags
+        if current_book.tags and len(recommendations) < 3:
+            tag_matches = []
+            for book in other_books:
+                if book not in recommendations and book.tags:
+                    common_tags = set(current_book.tags) & set(book.tags)
+                    if common_tags:
+                        tag_matches.append((book, len(common_tags)))
+            
+            # Sort by number of common tags
+            tag_matches.sort(key=lambda x: x[1], reverse=True)
+            for book, _ in tag_matches[:3-len(recommendations)]:
+                recommendations.append(book)
+        
+        # 3. Fill remaining with popular books (by author similarity or random)
+        if len(recommendations) < 3:
+            remaining = [book for book in other_books if book not in recommendations]
+            recommendations.extend(remaining[:3-len(recommendations)])
+        
+        return recommendations[:3]
+    
     def get_library_insights(self, books: List[Book]) -> str:
         try:
             genre_counts = {}
@@ -398,12 +428,69 @@ def main():
                             st.write(f"📅 Due: {book.due_date} | Borrower: {book.borrower_name}")
                     
                     with col2:
-                        if st.button("Edit", key=f"edit_{book.id}"):
-                            st.session_state[f"editing_{book.id}"] = True
+                        if st.button("📚 Get Recommendations", key=f"recommend_{book.id}"):
+                            st.session_state[f"show_recommendations_{book.id}"] = True
                     
                     with col3:
+                        if st.button("Edit", key=f"edit_{book.id}"):
+                            st.session_state[f"editing_{book.id}"] = True
                         if st.button("Delete", key=f"delete_{book.id}"):
                             library_manager.delete_book(book.id)
+                            st.rerun()
+                    
+                    # Show recommendations
+                    if st.session_state.get(f"show_recommendations_{book.id}", False):
+                        st.write("---")
+                        st.write(f"**📚 Books similar to '{book.title}':**")
+                        
+                        # Get recommendations (simple first, then AI if available)
+                        recommendations = ai_assistant.get_simple_recommendations(library_manager.books, book)
+                        
+                        if recommendations:
+                            for i, rec_book in enumerate(recommendations):
+                                rec_col1, rec_col2 = st.columns([4, 1])
+                                with rec_col1:
+                                    status_emoji = "🔴" if rec_book.is_borrowed else "🟢"
+                                    st.write(f"{status_emoji} **{rec_book.title}** by {rec_book.author}")
+                                    st.write(f"*{rec_book.genre} ({rec_book.year})* | Tags: {', '.join(rec_book.tags) if rec_book.tags else 'None'}")
+                                    
+                                    # Show why it's recommended
+                                    reasons = []
+                                    if rec_book.genre == book.genre:
+                                        reasons.append(f"Same genre ({book.genre})")
+                                    if rec_book.tags and book.tags:
+                                        common_tags = set(rec_book.tags) & set(book.tags)
+                                        if common_tags:
+                                            reasons.append(f"Similar themes: {', '.join(list(common_tags)[:2])}")
+                                    
+                                    if reasons:
+                                        st.write(f"💡 *Recommended because: {', '.join(reasons)}*")
+                                
+                                with rec_col2:
+                                    if not rec_book.is_borrowed:
+                                        if st.button("📤 Check Out", key=f"checkout_rec_{rec_book.id}_{book.id}"):
+                                            borrower_name = st.text_input("Borrower name:", key=f"borrower_rec_{rec_book.id}_{book.id}")
+                                            if borrower_name:
+                                                library_manager.check_out_book(rec_book.id, borrower_name)
+                                                st.success(f"Checked out '{rec_book.title}' to {borrower_name}!")
+                                                st.rerun()
+                                    else:
+                                        st.write("📅 Currently borrowed")
+                            
+                            # AI recommendations if available
+                            if ai_assistant.model:
+                                if st.button("🤖 Get AI Recommendations", key=f"ai_rec_{book.id}"):
+                                    with st.spinner("Getting AI recommendations..."):
+                                        ai_recs = ai_assistant.get_reading_recommendations(library_manager.books, book)
+                                        st.write("**🤖 AI Recommendations:**")
+                                        for rec in ai_recs:
+                                            if rec.strip():
+                                                st.write(rec)
+                        else:
+                            st.info("No recommendations available (need more books in library)")
+                        
+                        if st.button("❌ Hide Recommendations", key=f"hide_rec_{book.id}"):
+                            st.session_state[f"show_recommendations_{book.id}"] = False
                             st.rerun()
                     
                     # Edit form
@@ -546,17 +633,48 @@ def main():
         
         for book in filtered_books:
             with st.container():
-                col1, col2 = st.columns([4, 1])
+                col1, col2 = st.columns([3, 1])
                 with col1:
                     status = "🔴 Borrowed" if book.is_borrowed else "🟢 Available"
                     st.write(f"**{book.title}** by {book.author} | {status}")
                     st.write(f"*{book.genre} ({book.year})* | Tags: {', '.join(book.tags) if book.tags else 'None'}")
                     if book.summary:
                         st.write(f"📝 {book.summary}")
-                with col2:
                     if book.is_borrowed:
-                        st.write(f"Due: {book.due_date}")
-                        st.write(f"Borrower: {book.borrower_name}")
+                        st.write(f"📅 Due: {book.due_date} | Borrower: {book.borrower_name}")
+                
+                with col2:
+                    if st.button("📚 Find Similar", key=f"search_recommend_{book.id}"):
+                        st.session_state[f"search_show_recommendations_{book.id}"] = True
+                
+                # Show recommendations in search
+                if st.session_state.get(f"search_show_recommendations_{book.id}", False):
+                    st.write("---")
+                    st.write(f"**📚 Books similar to '{book.title}':**")
+                    
+                    recommendations = ai_assistant.get_simple_recommendations(library_manager.books, book)
+                    
+                    if recommendations:
+                        for rec_book in recommendations:
+                            rec_status = "🔴 Borrowed" if rec_book.is_borrowed else "🟢 Available"
+                            st.write(f"  {rec_status} **{rec_book.title}** by {rec_book.author} ({rec_book.genre})")
+                            
+                            # Show why it's recommended
+                            reasons = []
+                            if rec_book.genre == book.genre:
+                                reasons.append(f"Same genre ({book.genre})")
+                            if rec_book.tags and book.tags:
+                                common_tags = set(rec_book.tags) & set(book.tags)
+                                if common_tags:
+                                    reasons.append(f"Similar themes: {', '.join(list(common_tags)[:2])}")
+                            
+                            if reasons:
+                                st.write(f"    💡 *{', '.join(reasons)}*")
+                    
+                    if st.button("❌ Hide Similar Books", key=f"search_hide_rec_{book.id}"):
+                        st.session_state[f"search_show_recommendations_{book.id}"] = False
+                        st.rerun()
+                
                 st.divider()
     
     elif page == "🤖 AI Features":

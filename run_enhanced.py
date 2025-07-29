@@ -38,7 +38,7 @@ def main():
     
     print("\n🏠 BookNest Enhanced Features:")
     print("┌─────────────────────────────────────────────┐")
-    print("│ 📚 25 sample books pre-loaded               │")
+    print("│ 📚 30 sample books pre-loaded (with summaries)│")
     print("│ 🎨 Modern card-based UI design              │")
     print("│ 📊 Real-time stats dashboard               │")
     print("│ 🔍 Advanced search and filtering           │")

@@ -79,15 +79,23 @@ A modern, intelligent library management system with beautiful UI/UX, built with
 5. **Open your browser** to `http://localhost:8501`
 
 ### 📚 Sample Data
-The system comes pre-loaded with 25 diverse books including:
+The system comes pre-loaded with **30 diverse books** including detailed summaries:
 - **Fiction**: To Kill a Mockingbird, 1984, The Great Gatsby
 - **Fantasy**: Harry Potter, Lord of the Rings, Game of Thrones
 - **Sci-Fi**: Dune, Foundation, Hitchhiker's Guide
 - **Mystery**: Agatha Christie, Gone Girl, The Silent Patient
 - **Non-Fiction**: Sapiens, Educated, Atomic Habits
-- **And many more across different genres!**
+- **Recent Bestsellers**: Where the Crawdads Sing, The Seven Husbands of Evelyn Hugo
+- **Classic Literature**: The Catcher in the Rye, Neuromancer, The Hobbit
+- **And many more across 9 different genres!**
 
-Some books are already "borrowed" to demonstrate the check-in/out functionality.
+**Features of Sample Data:**
+- ✅ All 30 books include detailed AI-generated summaries
+- 🔴 4 books are currently "borrowed" (2 are overdue for demo)
+- 📊 Balanced across genres for testing recommendations
+- 📋 5 borrowing history entries to demo analytics
+
+**Quick Setup:** If needed, run `python init_booknest.py` to refresh the sample data.
 
 ## 📖 Usage Guide
 
@@ -150,8 +158,10 @@ booknest/
 ├── requirements.txt    # Python dependencies  
 ├── run_app.py         # Original launcher
 ├── run_enhanced.py    # Enhanced launcher (recommended)
-├── sample_data.py     # Sample data generator
-├── test_recommendations.py # Test script
+├── init_booknest.py   # Initialize with 30 sample books
+├── check_library.py   # Check library status quickly
+├── sample_data.py     # Original sample data generator
+├── test_recommendations.py # Test recommendation system
 ├── logo.txt           # Branding and logo information
 ├── README.md          # This file
 ├── .gitignore        # Git ignore rules

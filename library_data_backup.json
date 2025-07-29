@@ -1,0 +1,455 @@
+{
+  "books": [
+    {
+      "id": "0001",
+      "title": "To Kill a Mockingbird",
+      "author": "Harper Lee",
+      "genre": "Fiction",
+      "year": 1960,
+      "isbn": "978-0-06-112008-4",
+      "tags": [
+        "classic",
+        "social justice",
+        "coming-of-age"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A powerful story of racial injustice and childhood innocence in the American South."
+    },
+    {
+      "id": "0002",
+      "title": "1984",
+      "author": "George Orwell",
+      "genre": "Fiction",
+      "year": 1949,
+      "isbn": "978-0-452-28423-4",
+      "tags": [
+        "dystopian",
+        "political",
+        "classic"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A chilling vision of a totalitarian future where Big Brother watches everything."
+    },
+    {
+      "id": "0003",
+      "title": "Pride and Prejudice",
+      "author": "Jane Austen",
+      "genre": "Romance",
+      "year": 1813,
+      "isbn": "978-0-14-143951-8",
+      "tags": [
+        "classic",
+        "romance",
+        "regency"
+      ],
+      "is_borrowed": true,
+      "borrower_name": "Alice Johnson",
+      "due_date": "2025-08-03",
+      "summary": "The timeless story of Elizabeth Bennet and Mr. Darcy's complex courtship."
+    },
+    {
+      "id": "0004",
+      "title": "The Great Gatsby",
+      "author": "F. Scott Fitzgerald",
+      "genre": "Fiction",
+      "year": 1925,
+      "isbn": "978-0-7432-7356-5",
+      "tags": [
+        "classic",
+        "american-dream",
+        "jazz-age"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A tragic tale of love, wealth, and the corruption of the American Dream."
+    },
+    {
+      "id": "0005",
+      "title": "Harry Potter and the Sorcerer's Stone",
+      "author": "J.K. Rowling",
+      "genre": "Fantasy",
+      "year": 1997,
+      "isbn": "978-0-439-70818-8",
+      "tags": [
+        "magic",
+        "young-adult",
+        "adventure"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A young wizard discovers his magical heritage and begins his journey at Hogwarts."
+    },
+    {
+      "id": "0006",
+      "title": "Dune",
+      "author": "Frank Herbert",
+      "genre": "Sci-Fi",
+      "year": 1965,
+      "isbn": "978-0-441-17271-9",
+      "tags": [
+        "space-opera",
+        "politics",
+        "ecology"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "Epic tale of politics, religion, and ecology on the desert planet Arrakis."
+    },
+    {
+      "id": "0007",
+      "title": "The Hitchhiker's Guide to the Galaxy",
+      "author": "Douglas Adams",
+      "genre": "Sci-Fi",
+      "year": 1979,
+      "isbn": "978-0-345-39180-3",
+      "tags": [
+        "humor",
+        "space",
+        "adventure"
+      ],
+      "is_borrowed": true,
+      "borrower_name": "Bob Smith",
+      "due_date": "2025-08-08",
+      "summary": "A hilarious journey through space with an unwitting human and his alien friend."
+    },
+    {
+      "id": "0008",
+      "title": "Foundation",
+      "author": "Isaac Asimov",
+      "genre": "Sci-Fi",
+      "year": 1951,
+      "isbn": "978-0-553-29335-0",
+      "tags": [
+        "space",
+        "mathematics",
+        "empire"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "The rise and fall of a galactic empire, guided by the science of psychohistory."
+    },
+    {
+      "id": "0009",
+      "title": "The Murder of Roger Ackroyd",
+      "author": "Agatha Christie",
+      "genre": "Mystery",
+      "year": 1926,
+      "isbn": "978-0-06-207350-4",
+      "tags": [
+        "detective",
+        "classic",
+        "whodunit"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "Hercule Poirot investigates a shocking murder with an unexpected twist."
+    },
+    {
+      "id": "0010",
+      "title": "The Girl with the Dragon Tattoo",
+      "author": "Stieg Larsson",
+      "genre": "Mystery",
+      "year": 2005,
+      "isbn": "978-0-307-94930-4",
+      "tags": [
+        "thriller",
+        "crime",
+        "sweden"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A journalist and a hacker uncover dark family secrets in Sweden."
+    },
+    {
+      "id": "0011",
+      "title": "Gone Girl",
+      "author": "Gillian Flynn",
+      "genre": "Mystery",
+      "year": 2012,
+      "isbn": "978-0-307-58836-4",
+      "tags": [
+        "psychological",
+        "thriller",
+        "marriage"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A marriage's dark secrets are revealed when a wife mysteriously disappears."
+    },
+    {
+      "id": "0012",
+      "title": "Sapiens",
+      "author": "Yuval Noah Harari",
+      "genre": "Non-Fiction",
+      "year": 2011,
+      "isbn": "978-0-06-231609-7",
+      "tags": [
+        "history",
+        "anthropology",
+        "evolution"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A sweeping look at the history and impact of Homo sapiens on Earth."
+    },
+    {
+      "id": "0013",
+      "title": "Educated",
+      "author": "Tara Westover",
+      "genre": "Biography",
+      "year": 2018,
+      "isbn": "978-0-399-59050-4",
+      "tags": [
+        "memoir",
+        "education",
+        "family"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A powerful memoir about education's transformative power and family loyalty."
+    },
+    {
+      "id": "0014",
+      "title": "The Immortal Life of Henrietta Lacks",
+      "author": "Rebecca Skloot",
+      "genre": "Science",
+      "year": 2010,
+      "isbn": "978-1-4000-5217-2",
+      "tags": [
+        "medical",
+        "ethics",
+        "biography"
+      ],
+      "is_borrowed": true,
+      "borrower_name": "Carol Davis",
+      "due_date": "2025-07-27",
+      "summary": "The story of cells that revolutionized medical science and the woman behind them."
+    },
+    {
+      "id": "0015",
+      "title": "The Lord of the Rings",
+      "author": "J.R.R. Tolkien",
+      "genre": "Fantasy",
+      "year": 1954,
+      "isbn": "978-0-544-00341-5",
+      "tags": [
+        "epic",
+        "adventure",
+        "middle-earth"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "The epic quest to destroy the One Ring and save Middle-earth from darkness."
+    },
+    {
+      "id": "0016",
+      "title": "A Game of Thrones",
+      "author": "George R.R. Martin",
+      "genre": "Fantasy",
+      "year": 1996,
+      "isbn": "978-0-553-10354-0",
+      "tags": [
+        "politics",
+        "medieval",
+        "dragons"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "Political intrigue and power struggles in the Seven Kingdoms of Westeros."
+    },
+    {
+      "id": "0017",
+      "title": "The Name of the Wind",
+      "author": "Patrick Rothfuss",
+      "genre": "Fantasy",
+      "year": 2007,
+      "isbn": "978-0-7564-0474-1",
+      "tags": [
+        "magic",
+        "music",
+        "storytelling"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "The legendary tale of Kvothe, told by the man himself."
+    },
+    {
+      "id": "0018",
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "genre": "Self-Help",
+      "year": 2018,
+      "isbn": "978-0-7352-1129-2",
+      "tags": [
+        "productivity",
+        "habits",
+        "psychology"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A proven system for building good habits and breaking bad ones."
+    },
+    {
+      "id": "0019",
+      "title": "The 7 Habits of Highly Effective People",
+      "author": "Stephen Covey",
+      "genre": "Self-Help",
+      "year": 1989,
+      "isbn": "978-1-982-13761-9",
+      "tags": [
+        "leadership",
+        "productivity",
+        "success"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "Timeless principles for personal and professional effectiveness."
+    },
+    {
+      "id": "0020",
+      "title": "The Guns of August",
+      "author": "Barbara Tuchman",
+      "genre": "History",
+      "year": 1962,
+      "isbn": "978-0-345-47609-8",
+      "tags": [
+        "world-war-1",
+        "politics",
+        "military"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A masterful account of the first month of World War I."
+    },
+    {
+      "id": "0021",
+      "title": "A People's History of the United States",
+      "author": "Howard Zinn",
+      "genre": "History",
+      "year": 1980,
+      "isbn": "978-0-06-083865-2",
+      "tags": [
+        "american-history",
+        "social-justice",
+        "politics"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "American history told from the perspective of ordinary people and marginalized groups."
+    },
+    {
+      "id": "0022",
+      "title": "The Alchemist",
+      "author": "Paulo Coelho",
+      "genre": "Fiction",
+      "year": 1988,
+      "isbn": "978-0-06-112241-5",
+      "tags": [
+        "philosophy",
+        "adventure",
+        "spiritual"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A shepherd's journey to find treasure leads to self-discovery."
+    },
+    {
+      "id": "0023",
+      "title": "Becoming",
+      "author": "Michelle Obama",
+      "genre": "Biography",
+      "year": 2018,
+      "isbn": "978-1-5247-6313-8",
+      "tags": [
+        "memoir",
+        "politics",
+        "inspiration"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "The former First Lady's powerful memoir of her journey from Chicago to the White House."
+    },
+    {
+      "id": "0024",
+      "title": "The Silent Patient",
+      "author": "Alex Michaelides",
+      "genre": "Mystery",
+      "year": 2019,
+      "isbn": "978-1-250-30170-7",
+      "tags": [
+        "psychological",
+        "thriller",
+        "art"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A psychotherapist becomes obsessed with treating a woman who refuses to speak."
+    },
+    {
+      "id": "0025",
+      "title": "Where the Crawdads Sing",
+      "author": "Delia Owens",
+      "genre": "Fiction",
+      "year": 2018,
+      "isbn": "978-0-7352-1909-0",
+      "tags": [
+        "nature",
+        "mystery",
+        "coming-of-age"
+      ],
+      "is_borrowed": false,
+      "borrower_name": "",
+      "due_date": null,
+      "summary": "A nature-loving girl grows up isolated in the marshes of North Carolina."
+    }
+  ],
+  "borrowing_history": [
+    {
+      "book_id": "0001",
+      "book_title": "To Kill a Mockingbird",
+      "borrower_name": "John Doe",
+      "checkout_date": "2024-01-15",
+      "return_date": "2024-01-29",
+      "action": "checkin"
+    },
+    {
+      "book_id": "0008",
+      "book_title": "Foundation",
+      "borrower_name": "Jane Smith",
+      "checkout_date": "2024-01-20",
+      "return_date": "2024-02-03",
+      "action": "checkin"
+    },
+    {
+      "book_id": "0002",
+      "book_title": "1984",
+      "borrower_name": "Mike Wilson",
+      "checkout_date": "2024-01-25",
+      "return_date": "2024-02-08",
+      "action": "checkin"
+    }
+  ]
+}

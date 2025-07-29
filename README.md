@@ -116,28 +116,54 @@ The system comes pre-loaded with **30 diverse books** including detailed summari
 
 Choose your preferred method to set up a local Python environment:
 
-#### **Option 1: Using uv (modern Python environment manager)**
+#### **Option 1: Using uv (modern Python environment manager) - Recommended**
 ```bash
+# Install uv if you don't have it
+curl -LsSf https://astral.sh/uv/install.sh | sh
+# Or on Windows: powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
 # Create a new virtual environment with uv
 uv venv
 
 # Activate it
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 
-# Install dependencies from requirements.txt
+# Install dependencies from requirements.txt (much faster than pip!)
 uv pip install -r requirements.txt
 
 # Install additional dependencies for enhanced features
-uv pip install requests jupyter
+uv pip install requests jupyter aiohttp
 ```
 
-#### **Option 2: Using python -m venv (standard)**
+#### **Option 2: Using pyenv + uv (for Python version management)**
 ```bash
+# Install pyenv first (if not installed)
+# On macOS: brew install pyenv
+# On Linux: curl https://pyenv.run | bash
+
+# Install Python 3.11 (recommended version)
+pyenv install 3.11.7
+pyenv local 3.11.7
+
+# Now use uv with the right Python version
+uv venv --python $(pyenv which python)
+source .venv/bin/activate
+uv pip install -r requirements.txt
+```
+
+#### **Option 3: Using python -m venv (standard)**
+```bash
+# Ensure you have Python 3.8+ installed
+python --version  # Should show 3.8+
+
 # Create a virtual environment
 python -m venv .venv
 
 # Activate it
 source .venv/bin/activate  # On Windows: .venv\Scripts\activate
+
+# Upgrade pip
+pip install --upgrade pip
 
 # Install dependencies from requirements.txt
 pip install -r requirements.txt
@@ -146,16 +172,99 @@ pip install -r requirements.txt
 pip install requests jupyter
 ```
 
-#### **Option 3: Using conda**
+#### **Option 4: Using conda/mamba**
 ```bash
-# Create conda environment
+# Create conda environment with specific Python version
 conda create -n booknest python=3.11
+
+# Or if you have mamba (faster)
+mamba create -n booknest python=3.11
 
 # Activate environment
 conda activate booknest
 
 # Install dependencies
 pip install -r requirements.txt
+
+# Or install some packages through conda for better compatibility
+conda install streamlit pandas requests jupyter
+pip install google-generativeai
+```
+
+#### **Option 5: Using Poetry**
+```bash
+# Install Poetry if you don't have it
+curl -sSL https://install.python-poetry.org | python3 -
+
+# Initialize project (if pyproject.toml doesn't exist)
+poetry init
+
+# Install dependencies
+poetry install
+
+# Add our requirements
+poetry add streamlit google-generativeai pandas python-dateutil requests
+
+# Activate shell
+poetry shell
+```
+
+### 📋 **Requirements**
+- **Python**: 3.8+ (Recommended: 3.11+)
+- **Dependencies**: Listed in `requirements.txt`
+- **Optional**: Google API key for AI features
+- **Storage**: ~50MB for dependencies
+
+### 🛠️ **Platform-Specific Setup**
+
+#### **macOS**
+```bash
+# Install Homebrew (if not installed)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Python and uv
+brew install python@3.11 uv
+
+# Continue with Option 1 above
+```
+
+#### **Ubuntu/Debian Linux**
+```bash
+# Update package list
+sudo apt update
+
+# Install Python and pip
+sudo apt install python3.11 python3.11-venv python3-pip
+
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Continue with Option 1 above
+```
+
+#### **Windows**
+```powershell
+# Install Python from python.org or Microsoft Store
+# Then install uv
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
+
+# Or use chocolatey
+choco install python uv
+
+# Continue with Option 1 above (use .venv\Scripts\activate instead)
+```
+
+#### **Docker** (Optional)
+```bash
+# Clone repository
+git clone <repository-url>
+cd neurolib
+
+# Build image
+docker build -t booknest .
+
+# Run container
+docker run -p 8501:8501 -e GOOGLE_API_KEY="your-key" booknest
 ```
 
 ### 🚀 **Streamlit Cloud Deployment**

@@ -339,7 +339,7 @@ Focus on trends, popular genres, or recommendations for collection development."
 
 def main():
     st.title("📚 AI-Powered Library Management System")
-    st.markdown("*Manage your library with intelligent features powered by Gemini AI*")
+    st.markdown("*Book Management • Check-In/Out • AI Summaries • Smart Recommendations • Open Library • Search • Analytics*")
     
     # Initialize managers
     if 'library_manager' not in st.session_state:

@@ -1,6 +1,6 @@
 # 🏠 BookNest - AI-Powered Library Management System
 
-A modern, intelligent library management system with beautiful UI/UX, built with Streamlit and powered by Google's Gemini AI. Perfect for personal, school, or small community libraries.
+A modern library management system featuring **Book Management** • **Check-In/Out System** • **AI Summaries** • **Smart Recommendations** • **Open Library Integration** • **Real-time Search** • **Analytics Dashboard** - built with Streamlit and powered by Google's Gemini AI.
 
 ```
   ╔══════════════════════════════════════╗

@@ -54,10 +54,25 @@ A modern, intelligent library management system built with Streamlit and powered
 
 4. **Run the application**:
    ```bash
+   # Option 1: Use the convenient launcher script
+   python run_app.py
+   
+   # Option 2: Run directly with Streamlit  
    streamlit run app.py
    ```
 
 5. **Open your browser** to `http://localhost:8501`
+
+### 📚 Sample Data
+The system comes pre-loaded with 25 diverse books including:
+- **Fiction**: To Kill a Mockingbird, 1984, The Great Gatsby
+- **Fantasy**: Harry Potter, Lord of the Rings, Game of Thrones
+- **Sci-Fi**: Dune, Foundation, Hitchhiker's Guide
+- **Mystery**: Agatha Christie, Gone Girl, The Silent Patient
+- **Non-Fiction**: Sapiens, Educated, Atomic Habits
+- **And many more across different genres!**
+
+Some books are already "borrowed" to demonstrate the check-in/out functionality.
 
 ## 📖 Usage Guide
 

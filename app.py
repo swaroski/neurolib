@@ -121,9 +121,18 @@ class AIAssistant:
             
         self.model = genai.GenerativeModel('gemini-2.0-flash-exp')
     
-    def generate_book_summary(self, title: str, author: str, genre: str) -> str:
+    def generate_book_summary(self, title: str, author: str, genre: str, year: int = None) -> str:
         try:
-            prompt = f"Generate a concise 2-3 sentence summary for a book titled '{title}' by {author} in the {genre} genre. Focus on what makes this book interesting."
+            year_info = f" published in {year}" if year else ""
+            prompt = f"""Generate a compelling 2-3 sentence summary for the book '{title}' by {author}{year_info} in the {genre} genre. 
+
+Focus on:
+- The main plot or central theme
+- What makes this book noteworthy or appealing
+- The book's impact or significance if it's well-known
+
+Keep it engaging and informative for library users deciding whether to read it."""
+            
             response = self.model.generate_content(prompt)
             return response.text.strip()
         except Exception as e:
@@ -131,15 +140,40 @@ class AIAssistant:
     
     def get_reading_recommendations(self, books: List[Book], current_book: Book) -> List[str]:
         try:
-            book_list = "\n".join([f"- {book.title} by {book.author} ({book.genre})" for book in books[:10]])
+            # Filter out the current book and create a comprehensive list
+            other_books = [book for book in books if book.id != current_book.id]
+            
+            # Include more books and better formatting
+            book_list = "\n".join([
+                f"- {book.title} by {book.author} | Genre: {book.genre} | Tags: {', '.join(book.tags) if book.tags else 'None'}"
+                for book in other_books[:20]  # Show up to 20 books for better recommendations
+            ])
+            
             prompt = f"""Based on this library collection:
 {book_list}
 
-Someone enjoyed '{current_book.title}' by {current_book.author} ({current_book.genre}).
-Recommend 3 similar books from this collection and explain why in 1-2 sentences each."""
+A reader just finished and enjoyed: '{current_book.title}' by {current_book.author}
+- Genre: {current_book.genre}
+- Tags: {', '.join(current_book.tags) if current_book.tags else 'None'}
+- Summary: {current_book.summary[:100] if current_book.summary else 'No summary available'}
+
+Please recommend exactly 3 books from the above collection that this reader would likely enjoy next. For each recommendation:
+1. State the book title and author clearly
+2. Explain in 1-2 sentences why it's similar or would appeal to someone who liked the reference book
+3. Mention specific themes, genres, or elements that connect them
+
+Format your response as:
+**Book Title** by Author Name
+Explanation here.
+
+**Book Title** by Author Name  
+Explanation here.
+
+**Book Title** by Author Name
+Explanation here."""
             
             response = self.model.generate_content(prompt)
-            return response.text.strip().split('\n')
+            return [line.strip() for line in response.text.strip().split('\n') if line.strip()]
         except Exception as e:
             return [f"Could not generate recommendations: {str(e)}"]
     
@@ -216,7 +250,7 @@ def main():
                     summary = ""
                     if generate_summary:
                         with st.spinner("Generating AI summary..."):
-                            summary = ai_assistant.generate_book_summary(title, author, genre)
+                            summary = ai_assistant.generate_book_summary(title, author, genre, year)
                     
                     new_book = Book(
                         id=book_id,
@@ -428,7 +462,7 @@ def main():
                         selected_book = book_options[selected_book_title]
                         with st.spinner("Generating AI summary..."):
                             summary = ai_assistant.generate_book_summary(
-                                selected_book.title, selected_book.author, selected_book.genre
+                                selected_book.title, selected_book.author, selected_book.genre, selected_book.year
                             )
                             selected_book.summary = summary
                             library_manager.update_book(selected_book.id, selected_book)

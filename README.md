@@ -1,6 +1,13 @@
-# 📚 AI-Powered Library Management System
+# 🏠 BookNest - AI-Powered Library Management System
 
-A modern, intelligent library management system built with Streamlit and powered by Google's Gemini AI. Perfect for personal, school, or small community libraries.
+A modern, intelligent library management system with beautiful UI/UX, built with Streamlit and powered by Google's Gemini AI. Perfect for personal, school, or small community libraries.
+
+```
+  ╔══════════════════════════════════════╗
+  ║            📚 BookNest 🏠            ║
+  ║        AI Library Management         ║
+  ╚══════════════════════════════════════╝
+```
 
 ## ✨ Features
 
@@ -16,11 +23,15 @@ A modern, intelligent library management system built with Streamlit and powered
 - **🧠 Smart Library Insights**: AI analysis of your collection with trends and recommendations
 - **📊 Intelligent Analytics**: Data-driven insights about your library usage
 
-### 🎨 User Experience
-- **Clean, Intuitive Interface**: Beautiful Streamlit-based UI with emojis and clear navigation
-- **Real-time Updates**: Instant feedback and automatic data persistence
-- **Responsive Design**: Works seamlessly across different screen sizes
-- **Visual Status Indicators**: Easy-to-understand book availability status
+### 🎨 Enhanced User Experience
+- **Modern Card-Based Layout**: Netflix/Open Library inspired design with book cover thumbnails
+- **Status Badges**: Color-coded availability indicators (Available/Borrowed/Overdue)
+- **Toast Notifications**: Real-time feedback for all user actions
+- **Responsive Design**: Mobile-friendly interface that works on all devices
+- **Interactive Elements**: Hover effects, smooth transitions, and visual feedback
+- **Stats Dashboard**: Real-time overview of library metrics and activity
+- **Floating AI Chat**: Always-available AI librarian assistant
+- **Clean Navigation**: Icon-based tabs with intuitive organization
 
 ## 🚀 Quick Start
 
@@ -54,11 +65,15 @@ A modern, intelligent library management system built with Streamlit and powered
 
 4. **Run the application**:
    ```bash
-   # Option 1: Use the convenient launcher script
+   # Option 1: Enhanced UI with modern design (Recommended)
+   python run_enhanced.py
+   
+   # Option 2: Original version
    python run_app.py
    
-   # Option 2: Run directly with Streamlit  
-   streamlit run app.py
+   # Option 3: Run directly with Streamlit
+   streamlit run app_enhanced.py  # Enhanced version
+   streamlit run app.py           # Original version
    ```
 
 5. **Open your browser** to `http://localhost:8501`
@@ -76,11 +91,23 @@ Some books are already "borrowed" to demonstrate the check-in/out functionality.
 
 ## 📖 Usage Guide
 
-### Managing Books
-1. Navigate to **📖 Book Management**
-2. Use **➕ Add New Book** to add books with optional AI summary generation
-3. Edit or delete existing books using the action buttons
-4. All changes are automatically saved
+### 🏠 BookNest Enhanced Interface
+
+#### Navigation
+- **📚 My Books**: Browse your collection with beautiful card layouts
+- **➕ Add Book**: Clean form with AI summary generation
+- **🔍 Search**: Advanced filtering and real-time search
+- **📊 Insights**: Analytics dashboard with AI-powered insights
+
+#### Managing Books
+1. Navigate to **📚 My Books** to see your collection in card format
+2. Use **➕ Add Book** tab for a streamlined book addition process
+3. Each book card shows:
+   - Book cover placeholder with title
+   - Status badge (Available/Borrowed/Overdue)
+   - Metadata (genre, year, ISBN, tags)
+   - Action buttons (Check Out/In, Edit, AI Summary, Delete)
+4. Real-time stats dashboard shows library overview
 
 ### Check-In/Check-Out
 1. Go to **🔄 Check-In/Out**
@@ -94,11 +121,12 @@ Some books are already "borrowed" to demonstrate the check-in/out functionality.
 3. Apply additional filters by availability status or genre
 4. Browse your entire collection with detailed information
 
-### AI Features
-1. Access **🤖 AI Features** for intelligent capabilities
-2. **Book Summaries**: Generate AI-powered summaries for your books
-3. **Recommendations**: Get personalized reading suggestions
-4. **Library Insights**: Receive AI analysis of your collection
+### 🤖 AI Features
+1. **Floating AI Librarian**: Click the 🤖 button for instant AI assistance
+2. **Book Summaries**: Generate summaries directly from book cards
+3. **Smart Recommendations**: Get personalized suggestions based on any book
+4. **Library Insights**: AI analysis in the 📊 Insights tab
+5. **Chat Interface**: Ask questions like "Which sci-fi books do you recommend?" or "What books are overdue?"
 
 ### Analytics
 1. Check **📊 Analytics** for data insights
@@ -116,9 +144,15 @@ Some books are already "borrowed" to demonstrate the check-in/out functionality.
 
 ### File Structure
 ```
-neurolib/
-├── app.py              # Main application
-├── requirements.txt    # Python dependencies
+booknest/
+├── app.py              # Original application
+├── app_enhanced.py     # Enhanced UI version (recommended)
+├── requirements.txt    # Python dependencies  
+├── run_app.py         # Original launcher
+├── run_enhanced.py    # Enhanced launcher (recommended)
+├── sample_data.py     # Sample data generator
+├── test_recommendations.py # Test script
+├── logo.txt           # Branding and logo information
 ├── README.md          # This file
 ├── .gitignore        # Git ignore rules
 └── library_data.json # Data storage (auto-generated)
@@ -140,14 +174,17 @@ neurolib/
 - Smart search capabilities
 - AI insights and analytics
 
-✅ **Bonus Features**:
-- Visual status indicators
-- Overdue book tracking
-- Borrowing history
-- Genre-based filtering
-- Real-time search
-- Comprehensive analytics dashboard
-- Beautiful, polished UI
+✅ **Enhanced UI/UX Features**:
+- **Card-based design** inspired by Netflix/Open Library
+- **Status badges** with color coding and animations
+- **Toast notifications** for instant feedback
+- **Floating AI chatbot** always available
+- **Real-time stats dashboard** with metrics
+- **Mobile-responsive design** for all devices
+- **Interactive elements** with hover effects
+- **Modern color scheme** with professional branding
+- **Smooth transitions** and visual feedback
+- **Intuitive navigation** with icon-based tabs
 
 ## 🚀 Deployment
 

@@ -1,0 +1,64 @@
+BookNest Logo & Branding
+========================
+
+ASCII Logo (for terminal/docs):
+```
+  ╔══════════════════════════════════════╗
+  ║            📚 BookNest 🏠            ║
+  ║        AI Library Management         ║
+  ╚══════════════════════════════════════╝
+```
+
+Alternative ASCII:
+```
+    🏠 BookNest
+   ┌─────────────┐
+   │ 📚 🤖 📊 🔍 │
+   │  Your Smart │
+   │   Library   │
+   └─────────────┘
+```
+
+Icon Representations:
+🏠 - Home/Nest concept (main brand icon)
+📚 - Books/Library
+🤖 - AI Features
+📊 - Analytics
+🔍 - Search
+✨ - Smart/Enhanced features
+
+Color Palette:
+- Primary: #2E86AB (Professional Blue)
+- Secondary: #A23B72 (Elegant Purple)
+- Accent: #F18F01 (Warm Orange)
+- Success: #48BB78 (Green)
+- Warning: #ED8936 (Orange)
+- Error: #E53E3E (Red)
+- Background: #F5F7FA (Light Gray)
+- Text: #2D3748 (Dark Gray)
+
+Brand Personality:
+- Modern & Clean
+- Intelligent & Helpful
+- Warm & Approachable
+- Professional yet Friendly
+- Tech-forward but not intimidating
+
+Logo Description for Design Tools:
+"Create a modern, minimal logo for BookNest library management system. 
+Combine a stylized book icon with a house/nest element. Use flat design 
+with the color palette above. The book could be slightly open with pages 
+forming nest-like curves. Include both horizontal and stacked versions."
+
+App Icon Concept:
+- Square icon with rounded corners
+- Main element: Stylized book with nest/home curves
+- Background: Gradient from primary to secondary color
+- Foreground: White/light book icon
+- Simple enough to be recognizable at small sizes
+
+Taglines:
+- "Your AI-Powered Library Management System"
+- "Smart Library Management Made Simple"
+- "Where Books Find Their Perfect Home"
+- "Organize, Discover, Enjoy - Powered by AI"
